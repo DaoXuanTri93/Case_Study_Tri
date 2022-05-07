@@ -1,14 +1,13 @@
 
 class TASKS {
     
-    constructor(id, name, color, date, date2) {
+    constructor(id, name, color, date, date2,href) {
         this.id = id;
         this.name = name;
         this.color = color;
         this.date = date;
         this.date2 = date2;
-        this.href = '';
-    // color = '';
+        this.href = href;
         this.comment = '';
     }
 }
@@ -85,17 +84,19 @@ function init() {
     if (getData(key_data) == null) {
         listTasks = [
             //constructor(id, name,color, date, date2)
-            new TASKS(1, '[Bài đọc] Thẻ tạo liên kết: a', 'red', '', ''),
-            new TASKS(2, '[Bài đọc] Các thẻ tiêu đề h1, h2, h3, h4, h5, h6', 'yellow', '', ''),
-            new TASKS(3, '[Bài đọc] Thẻ tạo đoạn văn bản: p', 'green', '', ''),
-            new TASKS(4, '[Thực hành] Tạo bảng cơ bản', '', '', ''),
-            new TASKS(5, '[Thực hành] Tạo bảng nâng cao', '', '', ''),
-            new TASKS(6, 'Hoàn thành khoá học "Học cách học"', '', '', ''),
-            new TASKS(7, '[Bài tập] Tạo form đơn giản', '', '', ''),
-            new TASKS(8, 'Hoàn thành khoá học "Hoàn thành mọi việc với Kanban"', '', '', ''),
-            new TASKS(9, '[Bài tập] Tạo giao diện form đăng ký người dùng"', '', '', ''),
-            new TASKS(10, '[Bài tập] Tạo bảng đơn giản', '', '', ''),
-            new TASKS(11, '[Bài đọc] Tạo biểu mẫu cho trang web', '', '', ''),
+            new TASKS(1, '[Bài đọc] Thẻ tạo liên kết: a', 'green', '', '','https://www.google.com/'),
+            new TASKS(2, '[Bài đọc] Các thẻ tiêu đề h1, h2, h3, h4, h5, h6', 'green', '', '','https://james.codegym.vn/mod/page/view.php?id=5919'),
+            new TASKS(3, '[Bài đọc] Thẻ tạo đoạn văn bản: p', 'green', '', '','https://james.codegym.vn/mod/page/view.php?id=5920'),
+            new TASKS(4, '[Thực hành] Tạo bảng cơ bản', 'green', '', '','https://james.codegym.vn/mod/page/view.php?id=5928'),
+            new TASKS(5, '[Thực hành] Tạo bảng nâng cao', 'yellow', '', '','https://james.codegym.vn/mod/page/view.php?id=5930'),
+            new TASKS(6, 'Hoàn thành khoá học "Học cách học"', 'green', '', '','https://james.codegym.vn/mod/assign/view.php?id=5942'),
+            new TASKS(7, '[Bài tập] Tạo form đơn giản', 'yellow', '', '','https://james.codegym.vn/mod/page/view.php?id=5939'),
+            new TASKS(8, 'Hoàn thành khoá học "Hoàn thành mọi việc với Kanban"', 'green', '', '','https://james.codegym.vn/mod/assign/view.php?id=5943'),
+            new TASKS(9, '[Bài tập] Tạo giao diện form đăng ký người dùng"', 'yellow', '', '','https://james.codegym.vn/mod/page/view.php?id=5940'),
+            new TASKS(10, '[Bài tập] Tạo bảng đơn giản', 'yellow', '', '','https://james.codegym.vn/mod/page/view.php?id=5931'),
+            new TASKS(11, '[Bài đọc] Tạo biểu mẫu cho trang web', 'green', '', '','https://james.codegym.vn/mod/page/view.php?id=5934'),
+            new TASKS(12, '[*Xem thêm] Máy tính hoạt động như thế nào?', 'red', '', '','https://james.codegym.vn/mod/book/view.php?id=5791'),
+            new TASKS(13, '[*Đọc thêm] Các hệ thống quản lý mã nguồn và phiên bản', 'red', '', '','https://james.codegym.vn/mod/page/view.php?id=5778'),
         ];
 
         setData(key_data, listTasks);
@@ -164,14 +165,14 @@ function addTasks() {
     let maxId = getId() + 1;
     let area = document.querySelector('#textarea').value;
     if (area.trim() != '') {
-        listTasks.push(new TASKS(maxId, area, '', '', ''));
+        listTasks.push(new TASKS(maxId, area, '', '', '',''));
         // showTextArea();
         setData(key_data, listTasks);
         renderTasks();
         // renderlistTaskToday();
         resetTasks();
     } else {
-        alert('Xin Nhập Tên !!!')
+        alert('Name is required !!!')
     }
 }
 // phim enter
@@ -240,15 +241,6 @@ function hideEdit(tasksId) {
     
                     <div >
                         <input type="date" class="box-edit-date-end input" value="${task.date2}">
-                    </div>
-                    <div>
-                    <h2 class="box-edit-h2">Set Time</h2>
-    
-                        <select name="" id="" class="box-edit-date input">
-                            <option value="minutes">minutes</option>
-                            <option value="hours">hours</option>
-                            <option value="days">days</option>
-                        </select>
                     </div>
                 </div>
             </div>
@@ -433,7 +425,7 @@ function hideEditDone(tasksId) {
                     <h2 class="box-edit-h2">End Time</h2>
     
                     <div >
-                        <input type="date" class="box-edit-date-end input" value="${task.date}">
+                        <input type="date" class="box-edit-date-end input" value="${task.date2}">
                     </div>
                     <div>
                     <h2 class="box-edit-h2">Set Time</h2>
@@ -643,6 +635,7 @@ function addDate(tasksId) {
 }
 
 function gettaskById(tasksId) {
+    console.log(tasksId);
     return listTasks.find(function (pdt) {
         return pdt.id == tasksId;
     })
@@ -667,6 +660,11 @@ function editTask(tasksId) {
     document.querySelector('.box-edit').classList.add('d-none-edit');
     let task = gettaskById(tasksId);
     let taskName = document.querySelector('.edit-name').value;
+    if(taskName.trim() !== ''){
+        task.name = taskName;   
+    } else {    
+        alert('Name is required!!!');
+    }
     let color = document.querySelector('.box-edit-color').value;
     switch (color) {
         case 'Red':
@@ -679,24 +677,17 @@ function editTask(tasksId) {
             task.color = 'green';
             break;
     }
-
     let taskDate = document.querySelector('.box-edit-date-start').value;
     let taskDate2 = document.querySelector('.box-edit-date-end').value;
     let comments = document.querySelector('.box-edit-comment').value;
     task.comment = comments;
     document.querySelector('.comment').innerHTML = task.comment;
     // task.color = color;
-    task.name = taskName;
+    // task.name = taskName;
     task.date = taskDate;
     task.date2 = taskDate2;
     setData(key_data, listTasks);
     renderTasks();
-    // setData(key_data_today, listTaskToday);
-    // renderlistTaskToday();
-    // setData(key_data_Doing, listTaskDoing);
-    // renderlistTaskDoing();
-    // setData(key_data_Done, listTaskDone);
-    // renderlistTaskDone();
 }
 function editTaskToDay(tasksId) {
     document.querySelector('.box-edit').classList.add('d-none-edit');
