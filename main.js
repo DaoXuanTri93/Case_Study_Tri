@@ -281,8 +281,8 @@ function hideEditToDay(tasksId) {
             <div class="box-edit-delete">
                 <button class="btn btn-x" onclick="showEdit()">X</button>
                 <h2  class="box-edit-h2">Color</h2>
-                <select class="box-edit-color input" onchange="changeColorToDay(${tasksId})">
-                    <option >--Color--</option>
+                <select class="box-edit-color input" >
+                    <option hidden >--Color--</option>
                     <option value="Green" class="box-edit-option green1">Green</option>
                     <option value="Yellow" class="box-edit-option yellow">yellow</option>
                     <option value="Red" class="box-edit-option" red>red</option>
@@ -297,15 +297,7 @@ function hideEditToDay(tasksId) {
                     <div >
                         <input type="date" class="box-edit-date-end input" value="${task.date}">
                     </div>
-                    <div>
-                    <h2 class="box-edit-h2">Set Time</h2>
-    
-                        <select name="" id="" class="box-edit-date input">
-                            <option value="minutes">minutes</option>
-                            <option value="hours">hours</option>
-                            <option value="days">days</option>
-                        </select>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -346,8 +338,8 @@ function hideEditDoing(tasksId) {
             <div class="box-edit-delete">
                 <button class="btn btn-x" onclick="showEdit()">X</button>
                 <h2  class="box-edit-h2">Color</h2>
-                <select class="box-edit-color input" id="checkcolor" onchange="changeColorDoing(${tasksId})">
-                    <option >--Color--</option>
+                <select class="box-edit-color input" id="checkcolor" >
+                    <option hidden >--Color--</option>
                     <option value="Green" class="box-edit-option green1">Green</option>
                     <option value="Yellow" class="box-edit-option yellow">yellow</option>
                     <option value="Red" class="box-edit-option" red>red</option>
@@ -362,15 +354,7 @@ function hideEditDoing(tasksId) {
                     <div >
                         <input type="date" class="box-edit-date-end input" value="${task.date2}"> 
                     </div>
-                    <div>
-                    <h2 class="box-edit-h2">Set Time</h2>
-    
-                        <select name="" id="" class="box-edit-date input">
-                            <option value="minutes">minutes</option>
-                            <option value="hours">hours</option>
-                            <option value="days">days</option>
-                        </select>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -411,8 +395,8 @@ function hideEditDone(tasksId) {
             <div class="box-edit-delete">
                 <button class="btn btn-x" onclick="showEdit()">X</button>
                 <h2  class="box-edit-h2">Color</h2>
-                <select class="box-edit-color input" onchange="changeColorDone(${tasksId})">
-                    <option >--Color--</option>
+                <select class="box-edit-color input">
+                    <option hidden>--Color--</option>
                     <option value="Green" class="box-edit-option green1">Green</option>
                     <option value="Yellow" class="box-edit-option yellow">yellow</option>
                     <option value="Red" class="box-edit-option" red>red</option>
@@ -427,15 +411,7 @@ function hideEditDone(tasksId) {
                     <div >
                         <input type="date" class="box-edit-date-end input" value="${task.date2}">
                     </div>
-                    <div>
-                    <h2 class="box-edit-h2">Set Time</h2>
-    
-                        <select name="" id="" class="box-edit-date input">
-                            <option value="minutes">minutes</option>
-                            <option value="hours">hours</option>
-                            <option value="days">days</option>
-                        </select>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -453,119 +429,6 @@ function showEdit() {
 // ket thuc phan an/hien
 
 // change color tags
-function changeColor(tasksId) {
-    let task = gettaskById(tasksId);
-    let changeColor = document.querySelector(`.color-${tasksId}`);
-    let color = document.querySelector('.box-edit-color').value;
-    if (color == 'Red') {
-        task.color = 'red';
-        changeColor.classList.add('box-text-color-red');
-        changeColor.classList.remove('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-green');
-    } else if (color == 'Yellow') {
-        task.color = 'yellow';
-
-        changeColor.classList.add('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-red');
-        changeColor.classList.remove('box-text-color-green');
-    } else if (color == 'Green') {
-        task.color = 'green';
-
-        changeColor.classList.add('box-text-color-green');
-        changeColor.classList.remove('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-red');
-    }
-    setData(key_data, listTasks);
-    // setData(key_data_today, listTaskToday);
-    // setData(key_data_Doing, listTaskDoing);
-    // setData(key_data_Done, listTaskDone);
-}
-function changeColorToDay(tasksId) {
-    // let task = gettaskById(tasksId);
-    let taskToDay = gettaskByIdToDay(tasksId)
-    let changeColor = document.querySelector(`.color-${tasksId}`);
-    let color = document.querySelector('.box-edit-color').value;
-    if (color == 'Red') {
-        taskToDay.color = 'red';
-        changeColor.classList.add('box-text-color-red');
-        changeColor.classList.remove('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-green');
-    } else if (color == 'Yellow') {
-        taskToDay.color = 'yellow';
-
-        changeColor.classList.add('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-red');
-        changeColor.classList.remove('box-text-color-green');
-    } else if (color == 'Green') {
-        taskToDay.color = 'green';
-
-        changeColor.classList.add('box-text-color-green');
-        changeColor.classList.remove('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-red');
-    }
-    // setData(key_data, listTasks);
-    setData(key_data_today, listTaskToday);
-    // setData(key_data_Doing, listTaskDoing);
-    // setData(key_data_Done, listTaskDone);
-}
-function changeColorDoing(tasksId) {
-    // let task = gettaskById(tasksId);
-    // let task = gettaskByIdToDay(tasksId)
-    let taskDoing = gettaskByIdDoing(tasksId)
-    let changeColor = document.querySelector(`.color-${tasksId}`);
-    let color = document.querySelector('.box-edit-color').value;
-    if (color == 'Red') {
-        taskDoing.color = 'red';
-        changeColor.classList.add('box-text-color-red');
-        changeColor.classList.remove('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-green');
-    } else if (color == 'Yellow') {
-        taskDoing.color = 'yellow';
-
-        changeColor.classList.add('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-red');
-        changeColor.classList.remove('box-text-color-green');
-    } else if (color == 'Green') {
-        taskDoing.color = 'green';
-
-        changeColor.classList.add('box-text-color-green');
-        changeColor.classList.remove('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-red');
-    }
-    // setData(key_data, listTasks);
-    setData(key_data_Doing, listTaskDoing);
-    // setData(key_data_Doing, listTaskDoing);
-    // setData(key_data_Done, listTaskDone);
-}
-function changeColorDone(tasksId) {
-    // let task = gettaskById(tasksId);
-    // let task = gettaskByIdToDay(tasksId)
-    let taskDone = gettaskByIdDone(tasksId)
-    let changeColor = document.querySelector(`.color-${tasksId}`);
-    let color = document.querySelector('.box-edit-color').value;
-    if (color == 'Red') {
-        taskDone.color = 'red';
-        changeColor.classList.add('box-text-color-red');
-        changeColor.classList.remove('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-green');
-    } else if (color == 'Yellow') {
-        taskDone.color = 'yellow';
-
-        changeColor.classList.add('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-red');
-        changeColor.classList.remove('box-text-color-green');
-    } else if (color == 'Green') {
-        taskDone.color = 'green';
-
-        changeColor.classList.add('box-text-color-green');
-        changeColor.classList.remove('box-text-color-yellow');
-        changeColor.classList.remove('box-text-color-red');
-    }
-    // setData(key_data, listTasks);
-    setData(key_data_Done, listTaskDone);
-    // setData(key_data_Doing, listTaskDoing);
-    // setData(key_data_Done, listTaskDone);
-}
 
 
 // ----------------- end color
@@ -590,39 +453,52 @@ function getId() {
 }
 function removetask(tasksId) {
     document.querySelector('.box-edit').classList.add('d-none-edit');
-    let remove = listTasks.findIndex(function (pdt1) {
-        return pdt1.id == tasksId;
-    })
-    listTasks.splice(remove, 1);
-    setData(key_data, listTasks);
-    renderTasks();
+    let comfirm= window.confirm('Are you sure you want to delete ?');
+    if(comfirm){
+        let remove = listTasks.findIndex(function (pdt1) {
+            return pdt1.id == tasksId;
+        })
+        listTasks.splice(remove, 1);
+        setData(key_data, listTasks);
+        renderTasks();
+    }
+    
 }
 function removetaskToDay(tasksId) {
     document.querySelector('.box-edit').classList.add('d-none-edit');
-    let remove = listTaskToday.findIndex(function (pdt1) {
-        return pdt1.id == tasksId;
-    })
-    listTaskToday.splice(remove, 1);
-    setData(key_data_today, listTaskToday);
-    renderlistTaskToday();
+    let comfirm= window.confirm('Are you sure you want to delete ?');
+    if(comfirm){
+        let remove = listTaskToday.findIndex(function (taskId1) {
+            return taskId1.id == tasksId;
+        })
+        listTaskToday.splice(remove, 1);
+        setData(key_data, listTaskToday);
+        renderlistTaskToday();
+    }
 }
 function removetaskDoing(tasksId) {
     document.querySelector('.box-edit').classList.add('d-none-edit');
-    let remove = listTaskDoing.findIndex(function (pdt1) {
-        return pdt1.id == tasksId;
-    })
-    listTaskDoing.splice(remove, 1);
-    setData(key_data_Doing, listTaskDoing);
-    renderlistTaskDoing();
+    let comfirm= window.confirm('Are you sure you want to delete ?');
+    if(comfirm){
+        let remove = listTaskDoing.findIndex(function (taskId1) {
+            return taskId1.id == tasksId;
+        })
+        listTaskDoing.splice(remove, 1);
+        setData(key_data, listTaskDoing);
+        renderlistTaskDoing();
+    }
 }
 function removetaskDone(tasksId) {
     document.querySelector('.box-edit').classList.add('d-none-edit');
-    let remove = listTaskDone.findIndex(function (pdt1) {
-        return pdt1.id == tasksId;
-    })
-    listTaskDone.splice(remove, 1);
-    setData(key_data_Done, listTaskDone);
-    renderlistTaskDone();
+    let comfirm= window.confirm('Are you sure you want to delete ?');
+    if(comfirm){
+        let remove = listTaskDone.findIndex(function (taskId1) {
+            return taskId1.id == tasksId;
+        })
+        listTaskDone.splice(remove, 1);
+        setData(key_data, listTaskDone);
+        renderlistTaskDone();
+    }
 }
 function addDate(tasksId) {
     let addDate = document.querySelector(`.add-date-${tasksId}`).value;
@@ -635,7 +511,6 @@ function addDate(tasksId) {
 }
 
 function gettaskById(tasksId) {
-    console.log(tasksId);
     return listTasks.find(function (pdt) {
         return pdt.id == tasksId;
     })
@@ -682,8 +557,6 @@ function editTask(tasksId) {
     let comments = document.querySelector('.box-edit-comment').value;
     task.comment = comments;
     document.querySelector('.comment').innerHTML = task.comment;
-    // task.color = color;
-    // task.name = taskName;
     task.date = taskDate;
     task.date2 = taskDate2;
     setData(key_data, listTasks);
@@ -714,22 +587,14 @@ function editTaskToDay(tasksId) {
     let comments = document.querySelector('.box-edit-comment').value;
     task.comment = comments;
     document.querySelector('.comment').innerHTML = task.comment;
-    // task.color = color;
     task.name = taskName;
     task.date = taskDate;
     task.date2 = taskDate2;
-    // setData(key_data, listTasks);
-    // renderTasks();
     setData(key_data_today, listTaskToday);
     renderlistTaskToday();
-    // setData(key_data_Doing, listTaskDoing);
-    // renderlistTaskDoing();
-    // setData(key_data_Done, listTaskDone);
-    // renderlistTaskDone();
 }
 function editTaskDoing(tasksId) {
     document.querySelector('.box-edit').classList.add('d-none-edit');
-    // let task = gettaskByIdToDay(tasksId);
     let task = gettaskByIdDoing(tasksId);
     let taskName = document.querySelector('.edit-name').value;
     let color = document.querySelector('.box-edit-color').value;
@@ -753,22 +618,14 @@ function editTaskDoing(tasksId) {
     let comments = document.querySelector('.box-edit-comment').value;
     task.comment = comments;
     document.querySelector('.comment').innerHTML = task.comment;
-    // task.color = color;
     task.name = taskName;
     task.date = taskDate;
     task.date2 = taskDate2;
-    // setData(key_data, listTasks);
-    // renderTasks();
     setData(key_data_Doing, listTaskDoing);
     renderlistTaskDoing();
-    // setData(key_data_Doing, listTaskDoing);
-    // renderlistTaskDoing();
-    // setData(key_data_Done, listTaskDone);
-    // renderlistTaskDone();
 }
 function editTaskDone(tasksId) {
     document.querySelector('.box-edit').classList.add('d-none-edit');
-    // let task = gettaskByIdToDay(tasksId);
     let task = gettaskByIdDone(tasksId);
     let taskName = document.querySelector('.edit-name').value;
     let color = document.querySelector('.box-edit-color').value;
@@ -792,18 +649,11 @@ function editTaskDone(tasksId) {
     let comments = document.querySelector('.box-edit-comment').value;
     task.comment = comments;
     document.querySelector('.comment').innerHTML = task.comment;
-    // task.color = color;
     task.name = taskName;
     task.date = taskDate;
     task.date2 = taskDate2;
-    // setData(key_data, listTasks);
-    // renderTasks();
     setData(key_data_Done, listTaskDone);
     renderlistTaskDone();
-    // setData(key_data_Doing, listTaskDoing);
-    // renderlistTaskDoing();
-    // setData(key_data_Done, listTaskDone);
-    // renderlistTaskDone();
 }
 
 var acc = document.getElementsByClassName("accordion");
