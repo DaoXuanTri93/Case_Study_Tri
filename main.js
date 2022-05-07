@@ -205,7 +205,7 @@ function hideEdit(tasksId) {
         <div class="box-edit-stick">
             <div class="box-edit-tasks">
             <h2 class="box-edit-h2">Name</h2>
-                <textarea cols="30" rows="2" class ="edit-name textarea">${task.name}</textarea>
+                <textarea cols="30" rows="2" class ="edit-name textarea" >${task.name}</textarea>
                    <h2 class="box-edit-h2">Link</h2>
                     <div><a class="link" target="_blank" href="${task.href}">${task.href}</a>
                     </div>
@@ -225,21 +225,21 @@ function hideEdit(tasksId) {
             <div class="box-edit-delete">
                 <button class="btn btn-x" onclick="showEdit()">X</button>
                 <h2  class="box-edit-h2">Color</h2>
-                <select class="box-edit-color input">
-                    <option >--Color--</option>
-                    <option value="Green" class="box-edit-option green1">Green</option>
-                    <option value="Yellow" class="box-edit-option yellow">yellow</option>
-                    <option value="Red" class="box-edit-option" red>red</option>
+                <select class="box-edit-color input" id="select">
+                    <option hidden>--Color--</option>
+                    <option value="Green" class="box-edit-option green1" >Green</option>
+                    <option value="Yellow" class="box-edit-option yellow" >yellow</option>
+                    <option value="Red" class="box-edit-option red" >Red</option>
                 </select>
                 <div>
                     <h2 class="box-edit-h2">Star Time</h2>
                     <div >
-                        <input type="date" class="box-edit-date-start input" >
+                        <input type="date" class="box-edit-date-start input" value="${task.date}" >
                     </div>
                     <h2 class="box-edit-h2">End Time</h2>
     
                     <div >
-                        <input type="date" class="box-edit-date-end input">
+                        <input type="date" class="box-edit-date-end input" value="${task.date2}">
                     </div>
                     <div>
                     <h2 class="box-edit-h2">Set Time</h2>
@@ -298,12 +298,12 @@ function hideEditToDay(tasksId) {
                 <div>
                     <h2 class="box-edit-h2">Star Time</h2>
                     <div >
-                        <input type="date" class="box-edit-date-start input" >
+                        <input type="date" class="box-edit-date-start input" value="${task.date}" >
                     </div>
                     <h2 class="box-edit-h2">End Time</h2>
     
                     <div >
-                        <input type="date" class="box-edit-date-end input">
+                        <input type="date" class="box-edit-date-end input" value="${task.date}">
                     </div>
                     <div>
                     <h2 class="box-edit-h2">Set Time</h2>
@@ -354,7 +354,7 @@ function hideEditDoing(tasksId) {
             <div class="box-edit-delete">
                 <button class="btn btn-x" onclick="showEdit()">X</button>
                 <h2  class="box-edit-h2">Color</h2>
-                <select class="box-edit-color input" onchange="changeColorDoing(${tasksId})">
+                <select class="box-edit-color input" id="checkcolor" onchange="changeColorDoing(${tasksId})">
                     <option >--Color--</option>
                     <option value="Green" class="box-edit-option green1">Green</option>
                     <option value="Yellow" class="box-edit-option yellow">yellow</option>
@@ -363,12 +363,12 @@ function hideEditDoing(tasksId) {
                 <div>
                     <h2 class="box-edit-h2">Star Time</h2>
                     <div >
-                        <input type="date" class="box-edit-date-start input" >
+                        <input type="date" class="box-edit-date-start input" value="${task.date}">
                     </div>
                     <h2 class="box-edit-h2">End Time</h2>
     
                     <div >
-                        <input type="date" class="box-edit-date-end input">
+                        <input type="date" class="box-edit-date-end input" value="${task.date2}"> 
                     </div>
                     <div>
                     <h2 class="box-edit-h2">Set Time</h2>
@@ -428,12 +428,12 @@ function hideEditDone(tasksId) {
                 <div>
                     <h2 class="box-edit-h2">Star Time</h2>
                     <div >
-                        <input type="date" class="box-edit-date-start input" >
+                        <input type="date" class="box-edit-date-start input" value="${task.date}">
                     </div>
                     <h2 class="box-edit-h2">End Time</h2>
     
                     <div >
-                        <input type="date" class="box-edit-date-end input">
+                        <input type="date" class="box-edit-date-end input" value="${task.date}">
                     </div>
                     <div>
                     <h2 class="box-edit-h2">Set Time</h2>
@@ -668,21 +668,16 @@ function editTask(tasksId) {
     let task = gettaskById(tasksId);
     let taskName = document.querySelector('.edit-name').value;
     let color = document.querySelector('.box-edit-color').value;
-
     switch (color) {
         case 'Red':
             task.color = 'red';
-
             break;
         case 'Yellow':
             task.color = 'yellow';
-
             break;
         case 'Green':
             task.color = 'green';
-
             break;
-
     }
 
     let taskDate = document.querySelector('.box-edit-date-start').value;
